@@ -11,7 +11,7 @@ public class MazeGenerator : MonoBehaviour
     {
 
         StartCoroutine(WallGenerator(size));
-        Debug.Log(size.x);
+   
     }
 
     // Update is called once per frame
