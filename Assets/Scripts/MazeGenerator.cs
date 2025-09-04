@@ -51,10 +51,53 @@ public class MazeGenerator : MonoBehaviour
             int currentCellX = currentCellIndex / size.y;
             int currentCellY = currentCellIndex % size.y;
 
-            if(currentCellX < size.x)
+            if(currentCellX < size.x + 1)
             {
-
+                if (!completedCells.Contains(cellList[currentCellIndex + size.y]) && !currentPath.Contains(cellList[currentCellIndex + size.y]))
+                {
+                    possibleDirection.Add(1);
+                    possibleNextCell.Add(currentCellIndex+size.y);
+                }
+                
             }
+
+            if(currentCellX > 0)
+            {
+                if (!completedCells.Contains(cellList[currentCellIndex - size.y]) && !currentPath.Contains(cellList[currentCellIndex - size.y]))
+                {
+                    possibleDirection.Add(2);
+                    possibleNextCell.Add(currentCellIndex-size.y);
+                }
+            }
+
+            if(currentCellY < size.y -1)
+            {
+                if (!completedCells.Contains(cellList[currentCellIndex+1]) && !currentPath.Contains(cellList[currentCellIndex +1]))
+                {
+                    possibleDirection.Add(3);
+                    possibleNextCell.Add(currentCellIndex + 1);
+                }
+            }
+
+            if (currentCellY > 0)
+            {
+                if (!completedCells.Contains(cellList[currentCellIndex-1]) && !currentPath.Contains(cellList[currentCellIndex - 1]))
+                {
+                    possibleDirection.Add(4);
+                    possibleNextCell.Add(currentCellIndex - 1);
+                }
+            }
+
+            if(possibleDirection.Count > 0)
+            {
+                int chosenDirection = Random.Range(0, possibleDirection.Count);
+                CellManager chosenCell = cellList[possibleDirection[chosenDirection]];
+
+                currentPath.Add(chosenCell);
+                chosenCell.SetCellState(cellState.current);
+            }
+
+            yield return null;
         }
     }
 
