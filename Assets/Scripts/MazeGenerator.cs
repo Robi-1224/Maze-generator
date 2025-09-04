@@ -11,6 +11,7 @@ public class MazeGenerator : MonoBehaviour
     {
 
         StartCoroutine(WallGenerator(size));
+        Debug.Log(size.x);
     }
 
     // Update is called once per frame
@@ -41,6 +42,20 @@ public class MazeGenerator : MonoBehaviour
         // selects a starting point
         currentPath.Add(cellList[Random.Range(0,cellList.Count)]);
         currentPath[0].SetCellState(cellState.current);
+
+        while(completedCells.Count < cellList.Count) { 
+            List<int> possibleNextCell = new List<int>();
+            List<int> possibleDirection = new List<int>();
+
+            int currentCellIndex = cellList.IndexOf(currentPath[currentPath.Count -1]);
+            int currentCellX = currentCellIndex / size.y;
+            int currentCellY = currentCellIndex % size.y;
+
+            if(currentCellX < size.x)
+            {
+
+            }
+        }
     }
 
 
