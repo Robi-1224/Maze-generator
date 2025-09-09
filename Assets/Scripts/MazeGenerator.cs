@@ -57,6 +57,7 @@ public class MazeGenerator : MonoBehaviour
                 {
                     possibleDirection.Add(1);
                     possibleNextCell.Add(currentCellIndex+size.y);
+                    Debug.Log(currentCellIndex);
                 }
                 
             }
@@ -95,6 +96,13 @@ public class MazeGenerator : MonoBehaviour
 
                 currentPath.Add(chosenCell);
                 chosenCell.SetCellState(cellState.current);
+            }
+            else
+            {
+                completedCells.Add(currentPath[currentPath.Count - 1]);
+
+                currentPath[currentPath.Count - 1].SetCellState(cellState.selected);
+                currentPath.RemoveAt(currentPath.Count - 1);
             }
 
             yield return null;
